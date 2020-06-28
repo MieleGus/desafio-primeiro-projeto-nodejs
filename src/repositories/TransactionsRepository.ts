@@ -51,10 +51,6 @@ class TransactionsRepository {
   }
 
   public create({ title, type, value }: CreateTransactionDTO): Transaction {
-    const { total } = this.getBalance();
-    if (type === 'outcome' && total < value) {
-      throw Error('Saldo insuficiente');
-    }
     const transaction = new Transaction({ title, type, value });
     this.transactions.push(transaction);
 
